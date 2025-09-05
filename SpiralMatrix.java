@@ -1,55 +1,58 @@
-public public class SpiralMatrix {
-    public static int[][] generateSpiralMatrix(int n) {
-        int[][] matrix = new int[n][n];
-        int value = 1;
-        int top = 0, bottom = n - 1;
-        int left = 0, right = n - 1;
-
-        while (top <= bottom && left <= right) {
-            // Move right
-            for (int i = left; i <= right; i++) {
-                matrix[top][i] = value++;
-            }
-            top++;
-
-            // Move down
-            for (int i = top; i <= bottom; i++) {
-                matrix[i][right] = value++;
-            }
-            right--;
-
-            // Move left
-            if (top <= bottom) {
-                for (int i = right; i >= left; i--) {
-                    matrix[bottom][i] = value++;
+import java.util.ArrayList;
+public class SpiralMatrix {
+    public ArrayList<Integer>spirallyTraverse(int[][] arr){
+            ArrayList<Integer>matrix=new ArrayList<>();
+            int m=arr.length;
+            int n=arr[0].length;
+            int srow=0;
+            int scol=0;
+            int erow=m-1;
+            int ecol=n-1;
+            while(srow<=erow && scol<=ecol){
+                //Right
+                for(int j=scol ;j<=ecol;j++){
+                    matrix.add(arr[srow][j]);
                 }
-                bottom--;
-            }
-
-            // Move up
-            if (left <= right) {
-                for (int i = bottom; i >= top; i--) {
-                    matrix[i][left] = value++;
+                srow++;
+                if(srow>erow || scol>ecol){
+                   break;
                 }
-                left++;
+                //down
+                for(int i=srow ;i<=erow;i++){
+                    matrix.add(arr[i][ecol]);
+                }
+                ecol--;
+                if(srow>erow || scol>ecol){
+                    break;
+                 }
+                //left
+                for(int j=ecol+1 ;j>=scol;j--){
+                    matrix.add(arr[erow][j]);
+                }
+                erow--;
+                if(srow>erow || scol>ecol){
+                    break;
+                 }
+                //up
+                for(int i=erow-1 ;i>=srow+1;i--){
+                    matrix.add(arr[i][scol]);
+                }
+                scol++;
+                
             }
-        }
-
-        return matrix;
+            return matrix;    
     }
-
-    // Helper method to print the matrix
-    public static void printMatrix(int[][] matrix) {
-        for (int[] row : matrix) {
-            for (int num : row) {
-                System.out.printf("%4d", num);
-            }
-            System.out.println();
-        }
+        public static void main(String[] args) {
+            int[][] arr = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10,11,12},
+                {13,14,15,16}
+            };
+            SpiralMatrix sm = new SpiralMatrix();
+            ArrayList<Integer> result = sm.spirallyTraverse(arr);
+            System.out.println(result);
     }
-
-    public static void main(String[] args) {
-        int n = 4; // Change this to any size you want
-        int[][] spiral = sprilmatrix {
-    
 }
+
+            
