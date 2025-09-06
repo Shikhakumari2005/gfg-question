@@ -1,32 +1,4 @@
-import java.util.Arrays;
-
-public class rotateby90arr {
-    public static int[][] Rotate(int[][] arr){
-        int m=arr.length;
-        int n=arr[0].length;
-        int[][] rotated = new int[n][m];
-       // ArrayList<Integer>matrix=new ArrayList<>();
-        for(int i=0; i<m;i++){
-            for(int j=0; j<n;j++){
-                // int temp=arr[i][j];
-                // arr[i][j]=matrix[i][j];
-                // matrix[i][j]
-                rotated[j][m-1-i]=arr[i][j];
-            }
-        }
-        return rotated;
-    }
-    public static void main(String[] args) {
-        
-        int[][] arr={{1,2,3},{4,5,6},{7,8,9},{10,11,12}};
-        int[][] rotated=Rotate(arr);
-        for(int[] value:rotated){
-            System.out.print(Arrays.toString(value));
-        }
-        
-    }
-}
-
+// //brute approach
 // import java.util.Arrays;
 
 // public class rotatey90Arr {
@@ -58,3 +30,53 @@ public class rotateby90arr {
 //         }
 //     }
 // }
+
+
+
+
+//Reverse method and then transpose
+import java.util.Arrays;
+
+public class rotateby90arr {
+    public static void Rotate(int[][] arr){
+        int m=arr.length;
+       // int n=arr[0].length;
+
+        // reverse each row of the matrix
+        for(int i=0; i<m;i++){
+           
+                int l=0; int r=m-1;        //why not m
+                while(l<r){ 
+                    int temp=arr[i][l];
+                    arr[i][l]=arr[i][r];
+                    arr[i][r]=temp;
+                    l++;r--;
+                }
+        }
+        System.out.print(arr);
+
+        //transpose the matrix
+        for(int i=0; i<m-1;i++){
+            for(int j=i+1;j<m;j++){
+                int temp=arr[i][j];
+                    arr[i][j]=arr[j][i];
+                    arr[j][i]=temp;
+            }
+        }
+        //return Rotate(arr);
+    }
+    public static void main(String[] args) {
+        int[][] arr = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                
+        };
+    
+        Rotate(arr);
+    
+        for (int[]  row : arr) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+}
