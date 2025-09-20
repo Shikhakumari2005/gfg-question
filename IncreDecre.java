@@ -16,7 +16,6 @@ class IncreDecre {
     }
 }
                //ouput method
-
 //System.out.print(5 + " ") → prints 5
 
 // Then Print(4) is called.
