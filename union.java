@@ -1,15 +1,25 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class union {
     public static void Union(int a[] ,int b[]){
-        for (int i=0;i<a.length;i++){
-            for(int j=0;j<b.length;j++){
-                if(a[i]!=b[j]){
-                    a.append(b[j]);
-                }
+        ArrayList<Integer> List = new ArrayList<>();
+
+        // Add all elements from array a
+        for (int value : a) {
+            if (!List.contains(value)) {
+                List.add(value);
             }
         }
 
+        // Add elements from array b if not already present
+        for (int value : b) {
+            if (!List.contains(value)) {
+                List.add(value);
+            }
+        }
+
+        // Print the union
+        System.out.println("Union: " + List);
     }
 
 
